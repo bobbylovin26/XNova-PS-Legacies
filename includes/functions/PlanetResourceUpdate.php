@@ -144,4 +144,3 @@ function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Sim
         $CurrentPlanet = $shipyard->save();
     } 
 }
-?>
