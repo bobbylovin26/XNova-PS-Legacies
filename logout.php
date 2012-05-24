@@ -36,5 +36,6 @@ includeLang('logout');
 
 session_destroy();
 setcookie('nova-cookie', NULL, 0);
+header( "refresh:2;url=login.php" );
 
 message($lang['see_you'], $lang['session_closed'], 'login.' . PHPEXT);

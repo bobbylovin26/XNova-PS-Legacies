@@ -149,7 +149,7 @@ function FleetBuildingPage ( &$CurrentPlanet, $CurrentUser ) {
                  $MaxElements=1; }
 
                 if ($CanBuildOne)
-                 $PageTable.='<BR><BR><A ONCLICK="document.getElementById(\'fmenge['.$Element.']\').value=\''.intval($MaxElements).'\';" STYLE="cursor:pointer;">Nombre max ('.intval($MaxElements).')</A>';
+                 $PageTable.='<BR><BR><A ONCLICK="document.getElementById(\'fmenge['.$Element.']\').value=\''.intval($MaxElements).'\';" STYLE="cursor:pointer;">Create Max ('.intval($MaxElements).')</A>';
 
 
 				// Fin de ligne (les 3 cases sont construites !!
