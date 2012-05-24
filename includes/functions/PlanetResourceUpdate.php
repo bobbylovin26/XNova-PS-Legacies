@@ -28,7 +28,7 @@
  *
  */
  
-require_once ROOT_PATH . '/includes/classes/Legacies/Empire/Shipyard.php';
+require_once '/opt/lampp/htdocs/ogame/includes/classes/Legacies/Empire/Shipyard.php';
 
 function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Simul = false ) {
     global $ProdGrid, $resource, $reslist, $game_config;
