@@ -46,10 +46,7 @@ function GetTargetDistance($OrigGalaxy, $DestGalaxy, $OrigSystem, $DestSystem, $
 
 // Calcul de la durée de vol d'une flotte par rapport a sa vitesse max
 function GetMissionDuration ($GameSpeed, $MaxFleetSpeed, $Distance, $SpeedFactor) {
-    $Duration = 0;
-    $Duration = round(((35000 / $GameSpeed * sqrt($Distance * 10 / $MaxFleetSpeed) + 10) / $SpeedFactor));
-
-    return $Duration;
+    return round(($Distance * 3600) / ($MaxFleetSpeed * $SpeedFactor), 0) / ($GameSpeed / 10);
 }
 
 // Retourne la valeur ajustée de vitesse des flottes
