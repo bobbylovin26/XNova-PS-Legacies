@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           OGame Screen of Resources
 // @namespace      http://www.midgar.com.ar/grease/ogame/
-// @description    Graficzny interfejs surowcï¿½w
+// @description    Graficzny interfejs surowcýw
 // @include        http://ogame*.de/game/*
 // @include        http://*.gfsrv.net/game/*
 // ==/UserScript==
