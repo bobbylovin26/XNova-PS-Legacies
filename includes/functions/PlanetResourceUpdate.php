@@ -27,7 +27,7 @@
  * documentation for further information about customizing XNova.
  *
  */
-
+ 
 function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Simul = false ) {
 	global $ProdGrid, $resource, $reslist, $game_config;
 
@@ -41,7 +41,7 @@ function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Sim
 	$MaxCristalStorage              = $CurrentPlanet['crystal_max']   * MAX_OVERFLOW;
 	$MaxDeuteriumStorage            = $CurrentPlanet['deuterium_max'] * MAX_OVERFLOW;
 
-	// Calcul de production lin�aire des divers types
+	// Calcul de production linéaire des divers types
 	$Caps             = array();
 	$BuildTemp        = $CurrentPlanet[ 'temp_max' ];
 
@@ -112,9 +112,6 @@ function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Sim
 		} else {
 			$CurrentPlanet['metal']  = $MaxMetalStorage;
 		}
-    if ( $MetalTheorical < 0 ) {
-            $CurrentPlanet['metal']  = 0;
-    }
 	}
 
 	if ( $CurrentPlanet['crystal'] <= $MaxCristalStorage ) {
@@ -126,9 +123,6 @@ function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Sim
 		} else {
 			$CurrentPlanet['crystal']  = $MaxCristalStorage;
 		}
-    if ( $CristalTheorical < 0 ) {
-            $CurrentPlanet['crystal']  = 0;
-    }
 	}
 
 	if ( $CurrentPlanet['deuterium'] <= $MaxDeuteriumStorage ) {
@@ -140,43 +134,9 @@ function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Sim
 		} else {
 			$CurrentPlanet['deuterium']  = $MaxDeuteriumStorage;
 		}
-    if ( $DeuteriumTheorical < 0 ) {
-            $CurrentPlanet['deuterium']  = 0;
-    }
 	}
 
-	if ($Simul == false) {
-		// Gestion de l'eventuelle queue de fabrication d'elements
-		$Builded          = HandleElementBuildingQueue ( $CurrentUser, $CurrentPlanet, $ProductionTime );
 
-		// On enregistre la planete !
-		$QryUpdatePlanet  = "UPDATE {{table}} SET ";
-		$QryUpdatePlanet .= "`metal` = '"            . $CurrentPlanet['metal']             ."', ";
-		$QryUpdatePlanet .= "`crystal` = '"          . $CurrentPlanet['crystal']           ."', ";
-		$QryUpdatePlanet .= "`deuterium` = '"        . $CurrentPlanet['deuterium']         ."', ";
-		$QryUpdatePlanet .= "`last_update` = '"      . $CurrentPlanet['last_update']       ."', ";
-		$QryUpdatePlanet .= "`b_hangar_id` = '"      . $CurrentPlanet['b_hangar_id']       ."', ";
-		$QryUpdatePlanet .= "`metal_perhour` = '"    . $CurrentPlanet['metal_perhour']     ."', ";
-		$QryUpdatePlanet .= "`crystal_perhour` = '"  . $CurrentPlanet['crystal_perhour']   ."', ";
-		$QryUpdatePlanet .= "`deuterium_perhour` = '". $CurrentPlanet['deuterium_perhour'] ."', ";
-		$QryUpdatePlanet .= "`energy_used` = '"      . $CurrentPlanet['energy_used']       ."', ";
-		$QryUpdatePlanet .= "`energy_max` = '"       . $CurrentPlanet['energy_max']        ."', ";
-		// Par hasard des elements etaient finis ....
-		if ( $Builded != '' ) {
-			foreach ( $Builded as $Element => $Count ) {
-				if ($Element <> '') {
-					$QryUpdatePlanet .= "`". $resource[$Element] ."` = '". $CurrentPlanet[$resource[$Element]] ."', ";
-				}
-			}
-		}
-		$QryUpdatePlanet .= "`b_hangar` = '". $CurrentPlanet['b_hangar'] ."' ";
-		$QryUpdatePlanet .= "WHERE ";
-		$QryUpdatePlanet .= "`id` = '". $CurrentPlanet['id'] ."';";
-
-		doquery("LOCK TABLE {{table}} WRITE", 'planets');
-		doquery($QryUpdatePlanet, 'planets');
-		doquery("UNLOCK TABLES", '');
-	}
 
 }
 

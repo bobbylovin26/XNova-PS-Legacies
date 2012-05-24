@@ -141,7 +141,7 @@ function FleetBuildingPage ( &$CurrentPlanet, $CurrentUser ) {
                    $TabIndex++;
                    $PageTable .= "<input type=text name=fmenge[".$Element."] alt='".$lang['tech'][$Element]."' size=16 maxlength=15 value=0 tabindex=".$TabIndex.">";
                    $maxElement = GetMaxConstructibleElements($Element, $CurrentPlanet);
-                   $PageTable .= '<A ONCLICK="document.getElementById(\'fmenge['.$Element.']\').value=\''.intval($MaxElements).'\';" STYLE="cursor:pointer;">(Max : {$maxElement})</a>';
+                   $PageTable .= '<A ONCLICK="document.getElementById(\'fmenge['.$Element.']\').value=\''.intval($MaxElements).'\';" STYLE="cursor:pointer;">(Max : '.$maxElement.')</a>';
                 }
 				// Fin de ligne (les 3 cases sont construites !!
 				$PageTable .= "</tr>";
