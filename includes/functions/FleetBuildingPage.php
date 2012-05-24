@@ -137,7 +137,9 @@ function FleetBuildingPage ( &$CurrentPlanet, $CurrentUser ) {
 				    // Si ... Et Seulement si je peux construire je mets la p'tite zone de saisie
                 if ($CanBuildOne) {
                    $TabIndex++;
-                   $PageTable .= "<input type=text id=fmenge[".$Element."] name=fmenge[".$Element."] alt='".$lang['tech'][$Element]."' value=0 tabindex=".$TabIndex.">";
+                   $PageTable .= "<input type=text name=fmenge[".$Element."] alt='".$lang['tech'][$Element]."' size=16 maxlength=15 value=0 tabindex=".$TabIndex.">";
+                   $maxElement = GetMaxConstructibleElements($Element, $CurrentPlanet);
+                   $PageTable .= "<br><a onclick=\"document.getElementsByName('fmenge[".$Element."]')[0].value = '$maxElement';\">(Max : {$maxElement})</a>";
                 }
 
 		$MaxElements   = GetMaxConstructibleElements ( $Element, $CurrentPlanet );
