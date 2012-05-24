@@ -34,7 +34,7 @@ ini_set('display_errors', false);
 define('ROOT_PATH', realpath(dirname(__FILE__)) . DIRECTORY_SEPARATOR);
 define('PHPEXT', require 'extension.inc');
 
-define('VERSION', '2009.1');
+define('VERSION', '2009.4');
 
 if (0 === filesize(ROOT_PATH . 'config.php') /*&& !defined('IN_INSTALL')*/) {
     header('Location: install/');
@@ -49,7 +49,7 @@ $IsUserChecked = false;
 define('DEFAULT_SKINPATH', '/skins/xnova/');
 define('TEMPLATE_DIR', realpath(ROOT_PATH . '/templates/'));
 define('TEMPLATE_NAME', 'OpenGame');
-define('DEFAULT_LANG', 'fr');
+define('DEFAULT_LANG', 'en');
 
 include(ROOT_PATH . 'includes/debug.class.'.PHPEXT);
 $debug = new Debug();
