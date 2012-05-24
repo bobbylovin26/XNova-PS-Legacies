@@ -46,8 +46,8 @@ $user          = array();
 $lang          = array();
 $IsUserChecked = false;
 
-define('DEFAULT_SKINPATH', '/skins/xnova/');
-define('TEMPLATE_DIR', realpath(ROOT_PATH . '/templates/'));
+define('DEFAULT_SKINPATH', 'skins/xnova/');
+define('TEMPLATE_DIR', realpath(ROOT_PATH . 'templates/'));
 define('TEMPLATE_NAME', 'OpenGame');
 define('DEFAULT_LANG', 'en');
 
