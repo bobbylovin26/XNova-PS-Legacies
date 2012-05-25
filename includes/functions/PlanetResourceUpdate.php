@@ -41,7 +41,7 @@ function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Sim
     $MaxCristalStorage              = $CurrentPlanet['crystal_max']   * MAX_OVERFLOW;
     $MaxDeuteriumStorage            = $CurrentPlanet['deuterium_max'] * MAX_OVERFLOW;
 
-    // Calcul de production linďż˝aire des divers types
+    // Calcul de production lin�aire des divers types
     $Caps             = array();
     $BuildTemp        = $CurrentPlanet[ 'temp_max' ];
 
@@ -137,9 +137,38 @@ function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Sim
     }
 
     if ($Simul == false) {
-        $shipyard = Legacies_Empire_Shipyard::factory($CurrentPlanet, $CurrentUser);
-        $shipyard->updateQueue();
-        $CurrentPlanet = $shipyard->save();
-    } 
+        // Gestion de l'eventuelle queue de fabrication d'elements
+        $itemsBuilt          = HandleElementBuildingQueue ( $CurrentUser, $CurrentPlanet, $ProductionTime );
+
+        // On enregistre la planete !
+        $sql =<<<SQL_EOF
+UPDATE {{table}} SET
+    `metal` = '{$CurrentPlanet['metal']}',
+    `crystal` = '{$CurrentPlanet['crystal']}',
+    `deuterium` = '{$CurrentPlanet['deuterium']}',
+    `last_update` = '{$CurrentPlanet['last_update']}',
+    `b_hangar_id` = '{$CurrentPlanet['b_hangar_id']}',
+    `metal_perhour` = '{$CurrentPlanet['metal_perhour']}',
+    `crystal_perhour` = '{$CurrentPlanet['crystal_perhour']}',
+    `deuterium_perhour` = '{$CurrentPlanet['deuterium_perhour']}',
+    `energy_used` = '{$CurrentPlanet['energy_used']}',
+    `energy_max` = '{$CurrentPlanet['energy_max']}',
+SQL_EOF;
+        // Par hasard des elements etaient finis ....
+        if (!empty($itemsBuilt)) {
+            foreach ($itemsBuilt as $element => $count ) {
+                $sql .= "`{$resource[$element]}` = '{$CurrentPlanet[$resource[$element]]}' + '{$count}', ";
+            }
+        }
+        $sql .=<<<SQL_EOF
+    `b_hangar` = {$CurrentPlanet['b_hangar']},
+    `b_hangar_id` = "{$CurrentPlanet['b_hangar_id']}"
+  WHERE`id` = {$CurrentPlanet['id']}
+SQL_EOF;
+
+        doquery("LOCK TABLE {{table}} WRITE", 'planets');
+        doquery($sql, 'planets');
+        doquery("UNLOCK TABLES", '');
+    }
+
 }
-?>
