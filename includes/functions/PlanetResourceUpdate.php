@@ -27,8 +27,6 @@
  * documentation for further information about customizing XNova.
  *
  */
- 
-require_once '/opt/lampp/htdocs/ogame/includes/classes/Legacies/Empire/Shipyard.php';
 
 function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Simul = false ) {
     global $ProdGrid, $resource, $reslist, $game_config;
@@ -144,3 +142,4 @@ function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Sim
         $CurrentPlanet = $shipyard->save();
     } 
 }
+?>
