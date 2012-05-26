@@ -76,6 +76,8 @@ function FleetBuildingPage(&$currentPlanet, &$currentUser)
             // Disponibilité actuelle
             $shipIdCount        = $currentPlanet[$resource[$shipId]];
             $shipIdNbre         = ($shipIdCount == 0) ? "" : " (".$lang['dispo'].": " . pretty_number($shipIdCount) . ")";
+            
+            $shipIdName = $lang['res']['fleet'][$shipId];
 
             // Construction des 3 cases de la ligne d'un element dans la page d'achat !
             // Début de ligne
@@ -112,7 +114,7 @@ function FleetBuildingPage(&$currentPlanet, &$currentUser)
             }
 
             if ($CanBuildOne) {
-                $PageTable .= '<br /><a onclick="document.getElementById(\'fmenge:'.$shipId.'\').value=\''.strval($maxElements).'\';" style="cursor:pointer;">Nombre max ('.number_format($maxElements, 0, ',', '.').')</a>';
+                $PageTable .= '<br /><a onclick="document.getElementById(\'fmenge:'.$shipId.'\').value=\''.strval($maxElements).'\';" style="cursor:pointer;">Max ('.number_format($maxElements, 0, ',', '.').')</a>';
             }
 
             // Fin de ligne (les 3 cases sont construites !!
