@@ -125,6 +125,5 @@ $lang['tool']         = 'Tool\'s';
 $lang['lm_ifo_serv']  = "Resources";
 $lang['lm_ifo_game']  = "Game";
 $lang['lm_ifo_fleet'] = "Fleet";
-$lang['lm_ifo_queue'] = "Queues";
 
 ?>
