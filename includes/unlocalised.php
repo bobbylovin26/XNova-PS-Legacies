@@ -154,7 +154,7 @@ function pretty_time ($seconds) {
     if ($sr < 10) { $ss = "0" . $sr; } else { $ss = $sr; }
 
     $time = '';
-    if ($day != 0) { $time .= $day . 'j '; }
+    if ($day != 0) { $time .= $day . 'd '; }
     if ($hs  != 0) { $time .= $hh . 'h ';  } else { $time .= '00h '; }
     if ($ms  != 0) { $time .= $mm . 'm ';  } else { $time .= '00m '; }
     $time .= $ss . 's';
