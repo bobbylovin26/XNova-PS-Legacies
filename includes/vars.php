@@ -32,7 +32,7 @@ if (!defined('ROOT_PATH')) {
     die('Hacking attempt');
 }
 
-require_once ROOT_PATH . 'includes/classes/Legacies/Empire.php';
+require_once ROOT_PATH . 'includes/classes/Legacies/Empire/Empire.php';
 
 // Liste de champs pour l'indication des messages en attante
 $messfields = array (
