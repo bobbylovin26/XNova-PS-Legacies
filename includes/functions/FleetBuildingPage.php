@@ -75,8 +75,7 @@ function FleetBuildingPage(&$currentPlanet, &$currentUser)
             $BuildOneElementTime = $shipyard->getBuildTime($shipId, 1);
             // Disponibilité actuelle
             $shipIdCount        = $currentPlanet[$resource[$shipId]];
-            $shipIdNbre         = ($shipIdCount == 0) ? "" : " (".$lang['dispo'].": " . pretty_number($shipIdCount) . ")";
-            
+            $shipIdNbre         = ($shipIdCount == 0) ? "" : " (".$lang['dispo'].": " . pretty_number($shipIdCount) . ")";            
             $shipIdName = $lang['tech'][$shipId];
 
             // Construction des 3 cases de la ligne d'un element dans la page d'achat !

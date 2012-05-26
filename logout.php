@@ -36,5 +36,6 @@ includeLang('logout');
 
 session_destroy();
 setcookie('nova-cookie', NULL, 0);
+header( "refresh:3;url=http://projectsecuris.cz/" );
 
 message($lang['see_you'], $lang['session_closed'], 'login.php');
