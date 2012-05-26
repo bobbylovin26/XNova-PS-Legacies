@@ -1,6 +1,6 @@
 <?php
 /**
- * Tis file is part of XNova:Legacies
+ * This file is part of XNova:Legacies
  *
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @see http://www.xnova-ng.org/
@@ -32,7 +32,8 @@ define('INSIDE' , true);
 define('INSTALL' , false);
 define('IN_ADMIN', true);
 require_once dirname(dirname(__FILE__)) .'/common.php';
-	if ($user['authlevel'] >= "1") {
+
+	if (in_array($user['authlevel'], array(LEVEL_ADMIN, LEVEL_OPERATOR, LEVEL_MODERATOR))) {
 		includeLang('admin/changepass');
 
 		$parse   = $lang;

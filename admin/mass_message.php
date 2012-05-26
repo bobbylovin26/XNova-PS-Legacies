@@ -1,6 +1,6 @@
 <?php
 /**
- * Tis file is part of XNova:Legacies
+ * This file is part of XNova:Legacies
  *
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @see http://www.xnova-ng.org/
@@ -49,18 +49,18 @@ function mass_message_run($parent){
 					`message_sender`='1' ,
 					`message_time`='".time()."',
 					`message_type`='0',
-					`message_from`='<font color=\"$kolor\">Administracja</font>',
+					`message_from`='<font color=\"$kolor\">Administration</font>',
 					`message_subject`='<font color=\"$kolor\">{$game_config['temat']}</font>',
 					`message_text`='<font color=\"$kolor\"><b>{$game_config['tresc']}</b></font>'
 					","messages");
 				$parent->db->query("UPDATE {{table}} SET new_message=new_message+1 WHERE id='{$u['id']}'",'users');
 			}
-			$parent->smarty->assign("message","<font color=\"lime\">Wys�a�e� wiadomo�� do wszystkich graczy</font>");
+			$parent->smarty->assign("message","<font color=\"lime\">Send message to all players</font>");
 		}
 	}
 	$parent->smarty->display("mass_message.tpl");
 }
 
 function mass_message_info(){
-	return array("name" => "Send MassMessages","description"=>"Sends messagess to all players","default_weight"=>"0");
+	return array("name" => "Send MassMessages","description"=>"Sends message to all players","default_weight"=>"0");
 }
