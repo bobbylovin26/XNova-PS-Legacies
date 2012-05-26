@@ -1,6 +1,6 @@
 <?php
 /**
- * Tis file is part of XNova:Legacies
+ * This file is part of XNova:Legacies
  *
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @see http://www.xnova-ng.org/
@@ -30,8 +30,8 @@
 
 $lang['user_level'] = array (
 	'0' => 'Player',
-	'1' => 'Moderater',
-	'2' => 'Operator',
+	'1' => 'Operator',
+	'2' => 'Moderator',
 	'3' => 'Administrator',
 );
 

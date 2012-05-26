@@ -1,6 +1,6 @@
 <?php
 /**
- * Tis file is part of XNova:Legacies
+ * This file is part of XNova:Legacies
  *
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @see http://www.xnova-ng.org/
@@ -42,7 +42,7 @@ $lang['Delete_request'] = 'Remove request';
 $lang['Ok'] = 'Accept';
 $lang['Reject'] = 'Reject';
 $lang['Delete'] = 'Remove';
-$lang['On'] = 'Onlince';
+$lang['On'] = 'Online';
 $lang['15_min'] = '15 min';
 $lang['Off'] = 'Offline';
 $lang['Player'] = 'Player';

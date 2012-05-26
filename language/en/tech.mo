@@ -1,6 +1,6 @@
 <?php
 /**
- * Tis file is part of XNova:Legacies
+ * This file is part of XNova:Legacies
  *
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @see http://www.xnova-ng.org/
@@ -68,6 +68,7 @@ $lang['tech_rc'] = array (
 213 => 'Destr.',
 214 => 'Rip',
 215 => 'Tracker',
+216 => 'Supernova',
 
 401 => 'Missile',
 402 => 'L.l&eacute;ger.',
@@ -137,6 +138,7 @@ $lang['tech'] = array(
 213 => 'Destructer',
 214 => 'Death Star',
 215 => 'Tracker',
+216 => 'Supernova',
 
 400 => 'Defense',
 401 => 'Rocket Luancher',
@@ -250,6 +252,7 @@ $lang['res']['descriptions'] = array(
 
 215 => "The tracker specializes in intercepting enemy fleets.",
 
+216 => "The supernova is the ultimate vessel, built by the admins to punish unruly players. Its power and speed are unmatched, only one supernova can beat another supernova.",
 
 
 401 => "The missile launcher is a simple and cheap to defend itself.",
