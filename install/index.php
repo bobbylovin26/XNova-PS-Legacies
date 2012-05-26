@@ -38,7 +38,7 @@ define('PHPEXT', include ROOT_PATH . 'extension.inc');
 define('DEFAULT_SKINPATH', '../skins/xnova/');
 define('TEMPLATE_DIR', realpath(ROOT_PATH . '/templates/'));
 define('TEMPLATE_NAME', 'OpenGame');
-define('DEFAULT_LANG', 'fr');
+define('DEFAULT_LANG', 'en');
 $dpath = DEFAULT_SKINPATH;
 
 include(ROOT_PATH . 'includes/debug.class.'.PHPEXT);
