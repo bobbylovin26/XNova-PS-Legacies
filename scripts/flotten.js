@@ -97,16 +97,15 @@ function distance() {
 }
 
 function duration() {
-    var speedfactor;
+	var speedfactor;
 
-    speedfactor = document.getElementsByName("speedfactor")[0].value;
-    msp = maxspeed();
-    sp = speed();
-    dist = distance();
+	speedfactor = document.getElementsByName("speedfactor")[0].value;
+	msp = maxspeed();
+	sp = speed();
+	dist = distance();
 
-    ret = Math.round((dist * 3600) / (msp * speedfactor), 0) / (sp / 10); 
-
-    return ret;
+	ret = Math.round(((35000 / sp * Math.sqrt(dist * 10 / msp) + 10) / speedfactor ));
+	return ret;
 }
 
 function consumption2() {

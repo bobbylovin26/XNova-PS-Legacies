@@ -21,62 +21,60 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- *                                --> NOTICE <--
+ *                                --//NOTICE <--
  *  This file is part of the core development branch, changing its contents will
  * make you unable to use the automatic updates manager. Please refer to the
  * documentation for further information about customizing XNova.
  *
  */
 
-function HandleElementBuildingQueue ( $CurrentUser, &$CurrentPlanet, $ProductionTime ) {
- 	global $resource, $espace_root_path, $lang;
- 	// Pendant qu'on y est, si on verifiait ce qui se passe dans la queue de construction du chantier ?
- 	if ($CurrentPlanet['b_hangar_id'] != 0) {
- 		$Builded                    = array ();
- 		$CurrentPlanet['b_hangar'] += $ProductionTime;
- 
- 		$BuildQueue                 = explode(';', $CurrentPlanet['b_hangar_id']);
- 
-		foreach ($BuildQueue as $Node => $Array) {
- 			if ($Array != '') {
- 				$Item              = explode(',', $Array);
- 				// On stocke sous forme Element, Nombre, Duree de fab
- 				$BuildArray[$Node] = array(intval($Item[0]), intval($Item[1]), GetBuildingTime ($CurrentUser, $CurrentPlanet, intval($Item[0])));
- 			}
- 		}
+function HandleElementBuildingQueue($currentUser, &$currentPlanet, $productionTime) {
+    global $resource;
+    // Pendant qu'on y est, si on verifiait ce qui se passe dans la queue de construction du chantier ?
+    if ($currentPlanet['b_hangar_id'] != '') {
 
- 		$CurrentPlanet['b_hangar_id'] = '';
- 
- 		$UnFinished = false;
- 		foreach ( $BuildArray as $Node => $Item ) {
- 			if (!$UnFinished) {
- 				$Element   = intval($Item[0]);
- 				$Count     = intval($Item[1]);
- 				$BuildTime = $Item[2];
- 				while ( $CurrentPlanet['b_hangar'] >= $BuildTime && !$UnFinished ) {
- 					if ( $Count > 0 ) {
- 						$CurrentPlanet['b_hangar'] -= $BuildTime;
- 						$Builded[$Element]++;
- 						$CurrentPlanet[$resource[$Element]]++;
- 						$Count--;
- 						if ($Count == 0) {
- 							break;
- 						}
-					} else {
- 						$UnFinished = true;
- 						break;
- 					}
-				}
- 			}
- 			if ( $Count != 0 ) {
- 				$CurrentPlanet['b_hangar_id'] .= $Element.",".$Count.";";
- 				
-			}
- 		}
- 	} else {
- 		$Builded                   = '';
- 		$CurrentPlanet['b_hangar'] = 0;
-	}
+        $buildArray = array();
+        $currentPlanet['b_hangar'] += $productionTime;
 
-  	return $Builded;
+        $buildQueue = explode(';', $currentPlanet['b_hangar_id']);
+
+        $currentPlanet['b_hangar_id'] = '';
+        $stopUpdate = false;
+        foreach ($buildQueue as $element) {
+            if (empty($element) || !($element = explode(',', $element))) {
+                continue;
+            } else if (count($element) < 2) {
+                continue;
+            }
+            list($item, $count) = $element;
+            $buildTime = GetBuildingTime($currentUser, $currentPlanet, $item);
+
+            if($currentPlanet['b_hangar'] >= $buildTime && !$stopUpdate) {
+                $itemsBuilt = max(0, min(floor($productionTime / $buildTime), $count));
+
+                if ($itemsBuilt <= 0) {
+                    $stopUpdate = true;
+                } else {
+                    $count -= $itemsBuilt;
+                    $productionTime -= $buildTime * $itemsBuilt;
+
+                    $currentPlanet['b_hangar'] -= ($buildTime * $itemsBuilt);
+                    $buildArray[$item] = $itemsBuilt;
+                }
+            } else {
+                $stopUpdate = true;
+            }
+
+            if ($itemsBuilt > 0) {
+                $itemsLeft = $count - $itemsBuilt;
+                $currentPlanet['b_hangar_id'] .= "$item,$itemsLeft;";
+            }
+        }
+    } else {
+        $buildArray = array();
+        $currentPlanet['b_hangar'] = 0;
+        $currentPlanet['b_hangar_id'] = '';
+    }
+
+    return $buildArray;
 }

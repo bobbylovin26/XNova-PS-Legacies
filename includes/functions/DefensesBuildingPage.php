@@ -32,6 +32,8 @@ function DefensesBuildingPage ( &$CurrentPlanet, $CurrentUser ) {
  	global $lang, $resource, $dpath, $_POST;
 
 	if (isset($_POST['fmenge'])) {
+		// On vient de Cliquer ' Construire '
+
 		// Et y a une liste de doléances
 		// Ici, on sait precisement ce qu'on aimerait bien construire ...
 
@@ -51,9 +53,6 @@ function DefensesBuildingPage ( &$CurrentPlanet, $CurrentUser ) {
 				$Missiles[503] += $ElmentArray[503];
 			}
 		}
-		
-		$SubQuery = array();
-		
 		foreach($_POST['fmenge'] as $Element => $Count) {
 			// Construction d'Element recuperés sur la page de Flotte ...
 			// ATTENTION ! La file d'attente Flotte est Commune a celle des Defenses
@@ -109,27 +108,14 @@ function DefensesBuildingPage ( &$CurrentPlanet, $CurrentUser ) {
 
 					$Ressource = GetElementRessources ( $Element, $Count );
 					$BuildTime = GetBuildingTime($CurrentUser, $CurrentPlanet, $Element);
-					
-					if ($Count >= 1)
-					{
+					if ($Count >= 1) {
 						$CurrentPlanet['metal']           -= $Ressource['metal'];
 						$CurrentPlanet['crystal']         -= $Ressource['crystal'];
 						$CurrentPlanet['deuterium']       -= $Ressource['deuterium'];
-						
-						if ($BuildTime > 0)							
-							$CurrentPlanet['b_hangar_id']     .= "". $Element .",". $Count .";";
-						else							
-							$SubQuery[] = "`{$resource[$Element]}` = `{$resource[$Element]}` + '{$Count}'";
+						$CurrentPlanet['b_hangar_id']     .= "". $Element .",". $Count .";";
 					}
 				}
 			}
-		}
-		
-		if (!empty($SubQuery))
-		{
-			$SubQuery = implode(", ", $SubQuery);
-			
-			doquery("UPDATE {{table}} SET {$SubQuery} WHERE `id` = '{$CurrentPlanet['id']}'", 'planets');
 		}
 	}
 
@@ -195,8 +181,8 @@ function DefensesBuildingPage ( &$CurrentPlanet, $CurrentUser ) {
 						$PageTable .= "<font color=\"red\">".$lang['only_one']."</font>";
 					} else {
 						$TabIndex++;
-						$PageTable .= "<input type=text name=fmenge[".$Element."] alt='".$lang['tech'][$Element]."' size=16 maxlength=15 value=0 tabindex=".$TabIndex.">";
-            $PageTable .= "</th>";
+						$PageTable .= "<input type=text name=fmenge[".$Element."] alt='".$lang['tech'][$Element]."' size=5 maxlength=5 value=0 tabindex=".$TabIndex.">";
+						$PageTable .= "</th>";
 					}
 				} else {
 					$PageTable .= "</th>";
