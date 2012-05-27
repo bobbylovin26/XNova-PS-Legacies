@@ -95,7 +95,7 @@ function DefensesBuildingPage ( &$currentPlanet, $currentUser ) {
             $maxElements = $shipyard->getMaximumBuildableElementsCount($shipId);
             if (bccomp($maxElements, 0) > 0) {
                 $TabIndex++;
-                $PageTable .= "<input type=\"text\" id=\"fmenge:{$shipId}\" name=\"fmenge[".$shipId."]\" alt='".$lang['tech'][$shipId]."' size=5 maxlength=5 value=0 tabindex=".$TabIndex.">";
+                $PageTable .= "<input type=\"text\" id=\"fmenge:{$shipId}\" name=\"fmenge[".$shipId."]\" alt='".$lang['tech'][$shipId]."' value=0 tabindex=".$TabIndex.">";
 
                 if (MAX_FLEET_OR_DEFS_PER_ROW > 0 && $maxElements > MAX_FLEET_OR_DEFS_PER_ROW) {
                     $maxElements = MAX_FLEET_OR_DEFS_PER_ROW;
