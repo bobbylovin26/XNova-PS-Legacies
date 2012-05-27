@@ -67,6 +67,7 @@ function DefensesBuildingPage ( &$currentPlanet, $currentUser ) {
             // Disponibilité actuelle
             $shipIdCount        = $currentPlanet[$resource[$shipId]];
             $shipIdNbre         = ($shipIdCount == 0) ? "" : " (".$lang['dispo'].": " . pretty_number($shipIdCount) . ")";
+            $shipIdName = $lang['tech'][$shipId];
 
             // Construction des 3 cases de la ligne d'un element dans la page d'achat !
             // Début de ligne
@@ -100,7 +101,7 @@ function DefensesBuildingPage ( &$currentPlanet, $currentUser ) {
                     $maxElements = MAX_FLEET_OR_DEFS_PER_ROW;
                 }
 
-                $PageTable .= '<br /><a onclick="document.getElementById(\'fmenge:'.$shipId.'\').value=\''.strval($maxElements).'\';" style="cursor:pointer;">Nombre max ('.number_format($maxElements, 0, ',', '.').')</a>';
+                $PageTable .= '<br /><a onclick="document.getElementById(\'fmenge:'.$shipId.'\').value=\''.strval($maxElements).'\';" style="cursor:pointer;">Max ('.number_format($maxElements, 0, ',', '.').')</a>';
             } else if (in_array($shipId, array(Legacies_Empire::ID_DEFENSE_SMALL_SHIELD_DOME, Legacies_Empire::ID_DEFENSE_LARGE_SHIELD_DOME))) {
                 $PageTable .= '<span style="color:red">Limite de construction atteinte.</span>';
             } else if (in_array($shipId, array(Legacies_Empire::ID_DEFENSE_SMALL_SHIELD_DOME, Legacies_Empire::ID_DEFENSE_LARGE_SHIELD_DOME))) {
