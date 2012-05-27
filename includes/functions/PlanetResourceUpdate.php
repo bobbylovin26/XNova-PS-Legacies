@@ -86,7 +86,8 @@ trigger_error($CurrentPlanet['deuterium_perhour']);
     // Depuis quand n'avons nous pas les infos ressources a jours ?
     $ProductionTime               = ($UpdateTime - $CurrentPlanet['last_update']);
     $CurrentPlanet['last_update'] = $UpdateTime;
-    
+ 
+trigger_error($ProductionTime);   
 trigger_error($CurrentPlanet['last_update']);
 
     if ($CurrentPlanet['energy_max'] == 0) {
