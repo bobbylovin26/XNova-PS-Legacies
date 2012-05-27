@@ -95,7 +95,7 @@ function DefensesBuildingPage ( &$currentPlanet, $currentUser ) {
             $maxElements = $shipyard->getMaximumBuildableElementsCount($shipId);
             if (bccomp($maxElements, 0) > 0) {
                 $TabIndex++;
-                $PageTable .= "<input type=\"text\" id=\"fmenge:{$shipId}\" name=\"fmenge[".$shipId."]\" alt='".$lang['tech'][$shipId]."' value=0 tabindex=".$TabIndex.">";
+                $PageTable .= "<input type=text id=\"fmenge:{$shipId}\" name=fmenge[".$shipId."] alt='".$lang['tech'][$shipId]."' value=0 tabindex=".$tableIndex.">";
 
                 if (MAX_FLEET_OR_DEFS_PER_ROW > 0 && $maxElements > MAX_FLEET_OR_DEFS_PER_ROW) {
                     $maxElements = MAX_FLEET_OR_DEFS_PER_ROW;
@@ -103,7 +103,7 @@ function DefensesBuildingPage ( &$currentPlanet, $currentUser ) {
 
                 $PageTable .= '<br /><a onclick="document.getElementById(\'fmenge:'.$shipId.'\').value=\''.strval($maxElements).'\';" style="cursor:pointer;">Max ('.number_format($maxElements, 0, ',', '.').')</a>';
             } else if (in_array($shipId, array(Legacies_Empire::ID_DEFENSE_SMALL_SHIELD_DOME, Legacies_Empire::ID_DEFENSE_LARGE_SHIELD_DOME))) {
-                $PageTable .= '<span style="color:red">Limite de construction atteinte.</span>';
+                $PageTable .= '<span style="color:red">Maximum count reached.</span>';
             } else if (in_array($shipId, array(Legacies_Empire::ID_DEFENSE_SMALL_SHIELD_DOME, Legacies_Empire::ID_DEFENSE_LARGE_SHIELD_DOME))) {
                 $PageTable .= '<span style="color:red">Silo plein.</span>';
             }
