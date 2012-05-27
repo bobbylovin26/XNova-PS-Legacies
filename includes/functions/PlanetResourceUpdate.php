@@ -114,13 +114,6 @@ function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Sim
 			$CurrentPlanet['deuterium']  = $MaxDeuteriumStorage;
 		}
 	}
-  
-  if ($Simul == false) {
-        $shipyard = Legacies_Empire_Shipyard::factory($CurrentPlanet, $CurrentUser);
-        $shipyard->updateQueue();
-        $CurrentPlanet = $shipyard->save();
-  }
-
 
 
 }
