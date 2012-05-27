@@ -90,7 +90,7 @@ function DefensesBuildingPage ( &$currentPlanet, $currentUser ) {
             $PageTable .= "</td>";
 
             // Case nombre d'elements a construire
-            $PageTable .= "<td class=k>";
+            $PageTable .= "<th class=k>";
             // Si ... Et Seulement si je peux construire je mets la p'tite zone de saisie
             $maxElements = $shipyard->getMaximumBuildableElementsCount($shipId);
             if (bccomp($maxElements, 0) > 0) {
@@ -107,7 +107,6 @@ function DefensesBuildingPage ( &$currentPlanet, $currentUser ) {
             } else if (in_array($shipId, array(Legacies_Empire::ID_DEFENSE_SMALL_SHIELD_DOME, Legacies_Empire::ID_DEFENSE_LARGE_SHIELD_DOME))) {
                 $PageTable .= '<span style="color:red">Silo plein.</span>';
             }
-            $PageTable .= '</td>';
 
             // Fin de ligne (les 3 cases sont construites !!
             $PageTable .= "</tr>";
