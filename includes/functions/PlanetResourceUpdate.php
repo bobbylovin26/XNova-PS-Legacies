@@ -79,16 +79,9 @@ function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Sim
         $CurrentPlanet['energy_max']           = $Caps['energy_max'];
     }
 
-trigger_error($CurrentPlanet['metal_perhour']);
-trigger_error($CurrentPlanet['crystal_perhour']);
-trigger_error($CurrentPlanet['deuterium_perhour']);
-
     // Depuis quand n'avons nous pas les infos ressources a jours ?
     $ProductionTime               = ($UpdateTime - $CurrentPlanet['last_update']);
     $CurrentPlanet['last_update'] = $UpdateTime;
- 
-trigger_error($ProductionTime);   
-trigger_error($CurrentPlanet['last_update']);
 
     if ($CurrentPlanet['energy_max'] == 0) {
         // Ah ha ... l'energie max est 0 ...
@@ -145,6 +138,9 @@ trigger_error($CurrentPlanet['last_update']);
     }
 
     if ($Simul == false) {
+        doquery("LOCK TABLE {{table}} WRITE", 'planets');
+        doquery("UPDATE {{table}} SET 'last_update'='{$CurrentPlanet['last_update']}'", "planets");
+        doquery("UNLOCK TABLES", '');
         $shipyard = Legacies_Empire_Shipyard::factory($CurrentPlanet, $CurrentUser);
         $shipyard->updateQueue();
         $CurrentPlanet = $shipyard->save();        
