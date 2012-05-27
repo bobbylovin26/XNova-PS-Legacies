@@ -137,10 +137,11 @@ function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Sim
         }
     }
 
+    doquery("LOCK TABLE {{table}} WRITE", 'planets');
+    doquery("UPDATE {{table}} SET last_update='{$CurrentPlanet['last_update']}' WHERE 'id' = {$CurrentPlanet['id']};", "planets");
+    doquery("UNLOCK TABLES", '');
+
     if ($Simul == false) {
-        doquery("LOCK TABLE {{table}} WRITE", 'planets');
-        doquery("UPDATE {{table}} SET last_update='{$CurrentPlanet['last_update']}' WHERE 'id' = {$CurrentPlanet['id']};", "planets");
-        doquery("UNLOCK TABLES", '');
         $shipyard = Legacies_Empire_Shipyard::factory($CurrentPlanet, $CurrentUser);
         $shipyard->updateQueue();
         $CurrentPlanet = $shipyard->save();        
