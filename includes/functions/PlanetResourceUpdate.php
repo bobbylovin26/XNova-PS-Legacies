@@ -1,6 +1,6 @@
 <?php
 /**
- * Tis file is part of XNova:Legacies
+ * This file is part of XNova:Legacies
  *
  * @license http://www.gnu.org/licenses/gpl-3.0.txt
  * @see http://www.xnova-ng.org/
@@ -78,6 +78,10 @@ function PlanetResourceUpdate ( $CurrentUser, &$CurrentPlanet, $UpdateTime, $Sim
         $CurrentPlanet['energy_used']          = $Caps['energy_used'];
         $CurrentPlanet['energy_max']           = $Caps['energy_max'];
     }
+
+trigger_error($CurrentPlanet['metal_perhour']);
+trigger_error($CurrentPlanet['crystal_perhour']);
+trigger_error($CurrentPlanet['deuterium_perhour']);
 
     // Depuis quand n'avons nous pas les infos ressources a jours ?
     $ProductionTime               = ($UpdateTime - $CurrentPlanet['last_update']);
