@@ -83,7 +83,7 @@ require_once dirname(__FILE__) .'/common.php';
 			$_POST['ship213'] >= 1 ||
 			$_POST['ship214'] >= 1 ||
 			$_POST['ship215'] >= 1 ||
-      $_POST['ship216'] >= 1)) {
+      $_POST['ship216'] >= 1) {
 			if (!$YourPlanet) {
 				$missiontype[1] = $lang['type_mission'][1];
         $missiontype[5] = $lang['type_mission'][5];
