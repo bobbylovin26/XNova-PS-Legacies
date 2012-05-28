@@ -34,7 +34,7 @@ $lang['cancel']                  = "cancel";
 $lang['Planet_menu']             = "Planet Menu";
 $lang['Planet']                  = "Planet";
 $lang['Have_new_message']        = "You have 1 new message";
-$lang['Have_new_messages']       = "you have %m new messages";
+$lang['Have_new_messages']       = "You have %m new messages";
 $lang['Have_new_level_mineur']   = "You have gained 1 miner level!";
 $lang['Have_new_level_raid']     = "You have gained 1 raider level!";
 $lang['Server_time']             = "Time";
@@ -96,8 +96,8 @@ $lang['deletemessage_fail']  = "Incorrect password!";
 $lang['MembersOnline']       = "Member's online";
 $lang['ov_news_title']       = "News";
 $lang['Raids']               = "Raids";
-$lang['NumberOfRaids']       = "Number of Raids:";
-$lang['RaidsWin']            = "Rains Won:";
+$lang['NumberOfRaids']       = "Number of Raids";
+$lang['RaidsWin']            = "Raids Won";
 $lang['RaidsLoose']          = "Raids Lost";
 
 // Gestion des flottes
