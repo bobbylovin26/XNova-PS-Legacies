@@ -374,17 +374,17 @@ function MissionCaseAttack ($FleetRow)
             doquery($QryUpdateFleet , 'fleets');
 
             SendSimpleMessage ($CurrentUserID, '', $FleetRow['fleet_start_time'], 3, $lang['sys_mess_tower'], $lang['sys_mess_attack_report'], $raport);
-            // Ajout du petit point raideur
-            $AddPoint = $CurrentUser['xpraid'] + 1;
-
-            $QryUpdateOfficier = "UPDATE {{table}} SET ";
-            $QryUpdateOfficier .= "`xpraid` = '" . $AddPoint . "' ";
-            $QryUpdateOfficier .= "WHERE id = '" . $CurrentUserID . "' ";
-            $QryUpdateOfficier .= "LIMIT 1 ;";
-            doquery($QryUpdateOfficier, 'users');
             // Ajout d'un point au compteur de raids
             $RaidsTotal = $CurrentUser['raids'] + 1;
             if ($FleetResult == "a") {
+                // Ajout du petit point raideur
+                $AddPoint = $CurrentUser['xpraid'] + 1;
+                $QryUpdateOfficier = "UPDATE {{table}} SET ";
+                $QryUpdateOfficier .= "`xpraid` = '" . $AddPoint . "' ";
+                $QryUpdateOfficier .= "WHERE id = '" . $CurrentUserID . "' ";
+                $QryUpdateOfficier .= "LIMIT 1 ;";
+                doquery($QryUpdateOfficier, 'users');
+                //
                 $RaidsWin = $CurrentUser['raidswin'] + 1;
                 $QryUpdateRaidsCompteur = "UPDATE {{table}} SET ";
                 $QryUpdateRaidsCompteur .= "`raidswin` ='" . $RaidsWin . "', ";
